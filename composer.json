@@ -43,7 +43,6 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "composer update --no-install",
             "yii\\composer\\Installer::postInstall",
             "composer update --no-install"
         ],
