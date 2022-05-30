@@ -43,12 +43,12 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "yii\\composer\\Installer::postInstall"
+            "yii\\composer\\Installer::postInstall",
+            "composer update --lock"
         ],
         "post-create-project-cmd": [
             "yii\\composer\\Installer::postCreateProject",
-            "yii\\composer\\Installer::postInstall",
-            "composer update --lock"
+            "yii\\composer\\Installer::postInstall"
         ]
     },
     "extra": {
