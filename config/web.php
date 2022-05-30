@@ -2,10 +2,10 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
-$baseUrl = str_replace('/web', '', (new Request)->getBaseUrl());
+$baseUrl = str_replace('/web', '', (new \yii\web\Request)->getBaseUrl());
 
 $config = [
-    'id' => 'gsTFTgSPnV%$3awFi!%hHbdRJGkZV0FZwBUO%NaOdQ&dMiN3tu',
+    'id' => '#^&BLucp&q0SC^2KRAqEPSHqtnWsuqELZ^uv$^zhxmegmQ@Lo%',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -15,7 +15,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'IyVow@zBC#M547p#$UjFn%Ra75*EJ9voUG#OMVfsLE@bp#BEiw',
+            'cookieValidationKey' => 'DJ0O3qqMDa@zz7z@KU*^Ay4Go*3BW73%lNta4Nv#7rQJXk5g1M',
             'baseUrl' => $baseUrl,
         ],
         'cache' => [
@@ -46,21 +46,20 @@ $config = [
         ],
         'db' => $db,
         
-        // 'urlManager' => [
-        //     'enablePrettyUrl' => true,
-        //     'showScriptName' => false,
-        //     'rules' => [
-        //         '' => 'site/index',
-        //         '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
-        //     ],
-        // ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                '' => 'site/index',
+                '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
+            ],
+        ],
         
     ],
     'params' => $params,
 ];
 
-// DEV AND PRODUCTION
-if (DEV) {
+if (getenv('ENVIRONMENT') == 'DEV') {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [

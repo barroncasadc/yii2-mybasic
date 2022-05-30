@@ -1,9 +1,39 @@
-version: '2'
+version: "3.3"
+
 services:
-  php:
-    image: yiisoftware/yii2-php:7.4-apache
-    volumes:
-      - ~/.composer-docker/cache:/root/.composer/cache:delegated
-      - ./:/app:delegated
+
+  web:
+    restart: always
+    container_name: mybasic-php
+    build:
+      context: .
+      dockerfile: php.dockerfile
+    image: php.dockerfile
     ports:
-      - '8000:80'
+      - "9999:80"
+    volumes:
+      - .:/var/www/html # bind mount
+    networks:
+      - minha-rede
+
+  composer:
+    #user: 1000:1000 #non-root
+    container_name: mybasic-composer
+    image: composer:1.6
+    volumes:
+      - .:/var/www/html
+    working_dir: "/var/www/html"
+    # command: composer install --ignore-platform-reqs
+    command: |
+      bash -c "composer install --ignore-platform-reqs && chmod -R 777 /var/www/html && chown -R $USER:$USER /var/www/html"
+    networks:
+      - minha-rede
+    depends_on:
+      - web
+
+networks:
+  minha-rede:
+    driver: bridge
+
+volumes:
+  db_data:
