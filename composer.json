@@ -43,6 +43,9 @@
         }
     },
     "scripts": {
+        "pre-install-cmd": [
+            "sudo rm composer.lock"
+        ],
         "post-install-cmd": [
             "yii\\composer\\Installer::postInstall"
             
