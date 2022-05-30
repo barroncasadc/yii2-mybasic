@@ -44,13 +44,14 @@
     "scripts": {
         "post-install-cmd": [
             "yii\\composer\\Installer::postInstall"
+            
         ],
         "post-create-project-cmd": [
+            "sudo composer self-update",
             "yii\\composer\\Installer::postCreateProject",
             "yii\\composer\\Installer::postInstall"
         ],
         "pre-update-cmd": [
-            "sudo composer self-update"
         ]
     },
     "extra": {
