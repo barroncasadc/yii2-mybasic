@@ -42,9 +42,11 @@
         }
     },
     "scripts": {
+        "post-update-cmd": [
+            "yii\\composer\\Installer::postUpdate"
+        ],
         "post-install-cmd": [
-            "yii\\composer\\Installer::postInstall",
-            "php composer.phar update --lock"
+            "yii\\composer\\Installer::postInstall"
         ],
         "post-create-project-cmd": [
             "yii\\composer\\Installer::postCreateProject",
