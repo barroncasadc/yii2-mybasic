@@ -21,9 +21,18 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+
+        'session' => [
+            'name'         => '#^&BLucp&q0SC^2KRAqEPSHqtnWsuqELZ^uv$^zhxmegmQ@Lo%',
+            'class'        => 'yii\web\Session',
+            'cookieParams' => ['httponly' => true, 'lifetime' => 604800],
+            'timeout'      => 604800,
+            'useCookies'   => true,
+        ],
+        
         'user' => [
             'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -53,14 +62,6 @@ $config = [
                 '' => 'site/index',
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
-        ],
-
-        'session' => [
-            'name'         => 'frontend',
-            'class'        => 'yii\web\Session',
-            'cookieParams' => ['httponly' => true, 'lifetime' => 604800],
-            'timeout'      => 604800,
-            'useCookies'   => true,
         ],
         
     ],
