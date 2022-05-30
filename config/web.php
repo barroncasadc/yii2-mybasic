@@ -54,6 +54,14 @@ $config = [
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],
+
+        'session' => [
+            'name'         => 'frontend',
+            'class'        => 'yii\web\Session',
+            'cookieParams' => ['httponly' => true, 'lifetime' => 604800],
+            'timeout'      => 604800,
+            'useCookies'   => true,
+        ],
         
     ],
     'params' => $params,
