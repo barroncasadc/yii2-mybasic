@@ -1,4 +1,4 @@
-FROM php:7.3.7-apache
+FROM php:7.3-apache
 #MAINTAINER Pagseguro Konoha <ec-konoha@uolinc.com>
 
 ######
@@ -42,7 +42,7 @@ RUN pecl install memcached-3.1.5
 RUN docker-php-ext-enable memcached
 
 # mcrypt
-RUN pecl install mcrypt-1.0.3
+RUN pecl install mcrypt
 RUN docker-php-ext-enable mcrypt
 
 # teste
@@ -60,7 +60,8 @@ RUN docker-php-ext-install -j$(nproc) zip
 RUN docker-php-ext-install -j$(nproc) pdo_pgsql
 
 # configure, install and enable all php packages
-RUN docker-php-ext-configure gd --enable-gd --with-webp --with-freetype-dir --with-jpeg-dir
+# RUN docker-php-ext-configure gd --enable-gd --with-webp --with-freetype-dir --with-jpeg-dir
+# RUN docker-php-ext-configure gd --enable-gd
 
 RUN docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
 RUN docker-php-ext-configure mysqli --with-mysqli=mysqlnd
@@ -88,7 +89,7 @@ RUN docker-php-ext-configure zip
 # RUN echo "opcache.fast_shutdown=1" >> /usr/local/etc/php/conf.d/opcache-recommended.ini
 
 # install imagick
-RUN pecl install imagick-3.4.3
+RUN pecl install imagick
 RUN docker-php-ext-enable imagick
 
 # Permissions

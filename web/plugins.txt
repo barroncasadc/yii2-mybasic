@@ -1,0 +1,25 @@
+# Plugins utilizados no software
+
+> aws sdk
+https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/getting-started_installation.html
+composer require aws/aws-sdk-php --with-all-dependencies
+-
+> mpdf | pdf
+https://github.com/kartik-v/yii2-mpdf
+composer require kartik-v/yii2-mpdf "dev-master"
+-
+> select2
+https://github.com/kartik-v/yii2-widget-select2
+composer require kartik-v/yii2-widget-select2 "@dev"
+-
+> PhpOffice PhpSpreadsheet | excel
+https://github.com/PHPOffice/PhpSpreadsheet
+composer require phpoffice/phpspreadsheet
+-
+> kartik widgets
+https://github.com/kartik-v/yii2-widgets
+composer require kartik-v/yii2-widgets "*"
+-
+> Imagine | imagens
+https://www.yiiframework.com/extension/yiisoft/yii2-imagine
+composer require --prefer-dist yiisoft/yii2-imagine
