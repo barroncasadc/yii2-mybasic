@@ -23,7 +23,7 @@ $config = [
         ],
 
         'session' => [
-            'name'         => '#^&BLucp&q0SC^2KRAqEPSHqtnWsuqELZ^uv$^zhxmegmQ@Lo%',
+            'name'         => 'sAX#3TPWCQO8J&eaUTF368gMiiDs6gnn^sj^BapbqVD*uVP8CF',
             'class'        => 'yii\web\Session',
             'cookieParams' => ['httponly' => true, 'lifetime' => 604800],
             'timeout'      => 604800,
