@@ -135,6 +135,7 @@ class SiteController extends Controller
     {
 
         $mpdf = new \Mpdf\Mpdf([
+            'tempDir'       => __DIR__ . '/../tmp', // local temporario
             'mode'          => 'utf-8',
             'format'        => 'A4',
             'margin_left'   => 0,
