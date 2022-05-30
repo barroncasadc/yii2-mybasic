@@ -43,7 +43,7 @@
     "scripts": {
         "post-install-cmd": [
             "yii\\composer\\Installer::postInstall",
-            "composer require kartik-v/yii2-widget-select2 '@dev'"
+            "composer require kartik-v/yii2-widget-select2"
         ],
         "post-create-project-cmd": [
             "yii\\composer\\Installer::postCreateProject",
