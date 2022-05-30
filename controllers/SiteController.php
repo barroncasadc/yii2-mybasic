@@ -147,9 +147,18 @@ class SiteController extends Controller
             // 'default_font' => 'monospace'
         ]); //use this customization
 
-        $mpdf->WriteHTML('Nenhum item no relatório');
-        $mpdf->WriteHTML('<img style="width:100%; margin-right: 0px;" src="../tmp/default.png">');
-        $mpdf->Output();
+        // @DESC corpo do PDF
+        $html = $this->renderPartial('/../views/prints/capa_pdf', []);
+        // @DESC convertendo para PDF
+        $mpdf->WriteHTML($html);
+
+        // @DESC output
+        $mpdf->Output('arquivo_pdf', 'I');
+        /*
+            * F - salva o arquivo NO SERVIDOR
+            * I - abre no navegador E NÃO SALVA
+            * D - chama o prompt E SALVA NO CLIENTE
+        */
         
     }
 
