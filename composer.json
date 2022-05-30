@@ -46,8 +46,7 @@
             
         ],
         "post-install-cmd": [
-            "yii\\composer\\Installer::postInstall",
-            "composer install --ignore-lock"
+            "yii\\composer\\Installer::postInstall\\--ignore-lock"
         ],
         "post-create-project-cmd": [
             "yii\\composer\\Installer::postCreateProject",
