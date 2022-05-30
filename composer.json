@@ -43,11 +43,14 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "yii\\composer\\Installer::postInstall\\--ignore-lock"
+            "yii\\composer\\Installer::postInstall"
         ],
         "post-create-project-cmd": [
             "yii\\composer\\Installer::postCreateProject",
-            "yii\\composer\\Installer::postInstall\\--ignore-lock"
+            "yii\\composer\\Installer::postInstall"
+        ],
+        "pre-update-cmd": [
+            "sudo composer self-update"
         ]
     },
     "extra": {
