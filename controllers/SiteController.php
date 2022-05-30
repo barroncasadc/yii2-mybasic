@@ -148,6 +148,7 @@ class SiteController extends Controller
         ]); //use this customization
 
         $mpdf->WriteHTML('Nenhum item no relatório');
+        $mpdf->WriteHTML('<img style="width:100%; margin-right: 0px;" src="../tmp/default.png">');
         $mpdf->Output();
         
     }
