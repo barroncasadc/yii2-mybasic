@@ -1,5 +1,5 @@
 FROM php:7.3-apache
-#MAINTAINER Pagseguro Konoha <ec-konoha@uolinc.com>
+#MAINTAINER Caio Barroncas
 
 ######
 # You can configure php extensions using docker-php-ext-configure
