@@ -1,0 +1,16 @@
+# excluindo todos os arquivos docker
+
+sudo rm -R -f vendor &&
+sudo rm -vf $(docker ps -a -a) &&
+sudo rmi -f $(docker images -a -q) &&
+docker volume rm $(docker volumes ls -q) &&
+docker-compose up --build --force-recreate -d
+
+# yii2 interation
+
+docker exec -it 12313asd php yii2 migrate/create create_usuario --interactive=0
+docker exec -it 12313asd php yii2 migrate/create update_usuario --interactive=0
+docker exec -it 12313asd bash ; chmod -R 777 migrations/* ; exit
+docker exec -it 12313asd php yii migrate --interactive=0
+docker exec -it 12313asd composer require yiisoft/yii2-client-plugin
+
