@@ -1,4 +1,4 @@
-FROM php:7.3-apache
+FROM php:7.3.7-apache
 #MAINTAINER Caio Barroncas
 
 ######
@@ -37,30 +37,40 @@ RUN apt-get install -y --no-install-recommends \
     libpq-dev \
     nano;
 
+# ldap example
+# RUN docker-php-ext-install ldap
+# RUN docker-php-ext-configure ldap --with-libdir=lib
+
 # memcached
 RUN pecl install memcached-3.1.5
 RUN docker-php-ext-enable memcached
 
+# opcache
+RUN pecl install opcache
+RUN apache.ini /usr/local/etc/php/conf.d/opcache.ini
+
 # mcrypt
-RUN pecl install mcrypt
-RUN docker-php-ext-enable mcrypt
+# RUN pecl install mcrypt
+# RUN docker-php-ext-enable mcrypt
 
 # teste
 RUN a2enmod rewrite
 ADD . /var/www/html
 
-RUN docker-php-ext-install -j$(nproc) opcache
+# RUN docker-php-ext-install -j$(nproc) opcache
 RUN docker-php-ext-install -j$(nproc) pdo_mysql
 RUN docker-php-ext-install -j$(nproc) mysqli
 RUN docker-php-ext-install -j$(nproc) pdo
 RUN docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-install -j$(nproc) intl
 RUN docker-php-ext-install -j$(nproc) zip
+# RUN docker-php-ext-install -j$(nproc) ldap
+
 # postgresql
-RUN docker-php-ext-install -j$(nproc) pdo_pgsql
+# RUN docker-php-ext-install -j$(nproc) pdo_pgsql
 
 # configure, install and enable all php packages
-# RUN docker-php-ext-configure gd --enable-gd --with-webp --with-freetype-dir --with-jpeg-dir
+RUN docker-php-ext-configure gd --enable-gd --with-webp --with-freetype-dir --with-jpeg-dir
 # RUN docker-php-ext-configure gd --enable-gd
 
 RUN docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
@@ -88,6 +98,14 @@ RUN docker-php-ext-configure zip
 # RUN echo "opcache.revalidate_freq=2" >> /usr/local/etc/php/conf.d/opcache-recommended.ini
 # RUN echo "opcache.fast_shutdown=1" >> /usr/local/etc/php/conf.d/opcache-recommended.ini
 
+WORKDIR /var/www/html/
+COPY . /var/www/html/
+COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
+
+WORKDIR /var/www/html
+
+COPY . .
+
 # install imagick
 RUN pecl install imagick
 RUN docker-php-ext-enable imagick
@@ -99,10 +117,17 @@ RUN docker-php-ext-enable imagick
 # RUN find /var/www/html -type f -exec chmod u+rw,g+rw,o+r {} +
 
 # Instalando composer
-RUN php -r "copy('http://getcomposer.org/installer', 'composer-setup.php');"
-RUN php composer-setup.php
-RUN php -r "unlink('composer-setup.php');"
-RUN mv composer.phar /usr/local/bin/composer
+# RUN php -r "copy('http://getcomposer.org/installer', 'composer-setup.php');"
+# RUN php composer-setup.php
+# RUN php -r "unlink('composer-setup.php');"
+# RUN mv composer.phar /usr/local/bin/composer
 
 # Clear package lists
-RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+# RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN a2enmod rewrite
+RUN service apache2 restart
+
+EXPOSE 80
