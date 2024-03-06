@@ -46,8 +46,8 @@ RUN pecl install memcached-3.1.5
 RUN docker-php-ext-enable memcached
 
 # opcache
-RUN pecl install opcache
-RUN apache.ini /usr/local/etc/php/conf.d/opcache.ini
+RUN docker-php-ext-install opcache
+COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 # mcrypt
 # RUN pecl install mcrypt
