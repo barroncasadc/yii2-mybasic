@@ -42,7 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
               <div class="form-group">
                   <?= Html::submitButton('ENVIAR', [
                       'id'       => 'submitBtn',
-                      'disabled' => 'disabled',
                       'class'    => 'btn-block btn btn-success'
                   ]) ?>
               </div>

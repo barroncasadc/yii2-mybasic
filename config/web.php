@@ -37,9 +37,9 @@ $config = [
         'RequestPath' => [
             'class' => 'app\components\RequestPath'
         ],      
-        // 'PessoaRules'=>[
-        //     'class'=>'app\rules\PessoaRules'
-        //  ],
+        'Utils'=>[
+            'class'=> 'app\components\Utils'
+         ],
         // CUSTOM PARAMS ----------------------------------
 
         'session' => [
