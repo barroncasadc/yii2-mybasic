@@ -71,6 +71,8 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = 'blank_login';
+        
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -80,8 +82,8 @@ class SiteController extends Controller
             return $this->goBack();
         }
 
-        $model->password = '';
-        return $this->render('login', [
+        $model->senha = '';
+        return $this->render('n_login', [
             'model' => $model,
         ]);
     }

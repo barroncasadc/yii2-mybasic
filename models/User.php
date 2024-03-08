@@ -1,104 +1,112 @@
 <?php
 
 namespace app\models;
+use Yii;
 
-class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
+// estou dizendo que os dados que eu vou consultar para login está na tabela Usuario...
+// aqui executa apenas as funções...
+// que foi passada via submit atraves da janela de login e passada pelo controller pra ká..
+class User extends Pessoa implements \yii\web\IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
+    // deve ser a primary key que ele pega...
+    // cara aqui ele tá nem usando essas paradas é so porque é obrigatorio da função login
+    // nao estou usando ****
 
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
+    // // change senha
+    public $currentPassword;
+    public $newPassword;
+    public $newPasswordConfirm;
 
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function findIdentity($id)
+    public function rules()
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        return [
+             // change senha
+            [['currentPassword', 'newPassword', 'newPasswordConfirm'], 'required'],
+            [['currentPassword'], 'validateCurrentPassword'],
+
+            [['newPassword', 'newPasswordConfirm'], 'string', 'min' => 3],
+            [['newPassword', 'newPasswordConfirm'], 'filter', 'filter' => 'trim'],
+
+            [['newPasswordConfirm'], 'compare', 'compareAttribute' => 'newPassword', 'message' => 'Senhas informadas não Coincidem...'],
+
+            // [['senha'], 'message' => 'Senhas informadas não Coincidem...'],
+
+        ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public function attributeLabels()
+    {
+        return [
+            'currentPassword' => 'Senha antiga',
+            'newPassword' => 'Nova senha',
+            'newPasswordConfirm' => 'Repetir senha',
+        ];
+    }
+
+    public function validateCurrentPassword()
+    {
+        if (!$this->verifyPassword($this->currentPassword)) {
+            $this->addError("currentPassword", "Senha antiga incorreta...");
+        }
+    }
+
+    public function verifyPassword($senha)
+    {
+        $dbsenha = static::findOne(['pess_nome' => Yii::$app->user->identity->pess_nome])->pess_senha;
+        return Yii::$app->security->validatePassword($senha, $dbsenha);
+    }
+
+
+    public static function findIdentity($pess_codigo)
+    {
+        return static::findOne($pess_codigo);
+    }
+
+    // ele procura por uma instância da classe de identidade usando o token de acesso informado.
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented. ');
     }
 
-    /**
-     * Finds user by username
-     *
-     * @param string $username
-     * @return static|null
-     */
-    public static function findByUsername($username)
+    // aqui ele procura o Usuario que tenha esse email e seja habilitado...
+    public static function findByUsername($email)
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        // esse $email é passada pelo submit login
+        return static::findOne([
+            'pess_email' => $email,
+            'pess_habilitado' => 1,
+            'peti_codigo' => 1, // APENAS ADMIN LOGA NO SISTEMA
+        ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    // recupera o id do Usuario
     public function getId()
     {
-        return $this->id;
+        return $this->pess_codigo;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    // recupera a auth_key do Usuario
     public function getAuthKey()
     {
-        return $this->authKey;
+        return $this->pess_token;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    // retorna uma chave para verificar login via cookie.
     public function validateAuthKey($authKey)
     {
-        return $this->authKey === $authKey;
+        return $this->pess_token === $authKey;
     }
 
-    /**
-     * Validates password
-     *
-     * @param string $password password to validate
-     * @return bool if password provided is valid for current user
-     */
-    public function validatePassword($password)
+    // compara se a senha passada por post é igual a senha do Usuario do banco
+    public function validatePassword($senha)
     {
-        return $this->password === $password;
+        return Yii::$app->security->validatePassword($senha, $this->pess_senha);
     }
+
+    public function getNomeSolo() {
+        $nome = explode(' ', yii::$app->user->identity->pess_nome);
+        return "(" .$nome[0]. ")";
+    }
+
 }

@@ -1,14 +1,13 @@
 <?php
-
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => DB_DRIVER.':host='.DB_HOST.';dbname='.DB_DATABASE.'',
-    'username' => DB_USERNAME,
-    'password' => DB_PASSWORD,
+    'dsn' => getenv('DB_DRIVER').':host='.getenv('DB_HOST').';dbname='.getenv('DB_DATABASE').'',
+    'username' => getenv('DB_USERNAME'),
+    'password' => getenv('DB_PASSWORD'),
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)
-    // 'enableSchemaCache' => true,
-    // 'schemaCacheDuration' => 60,
-    // 'schemaCache' => 'cache',
+    'enableSchemaCache' => true,
+    'schemaCacheDuration' => 60,
+    'schemaCache' => 'cache',
 ];
