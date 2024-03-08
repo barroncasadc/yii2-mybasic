@@ -18,28 +18,40 @@ $this->title = 'DiscusBrazil';
     <div class="body-content">
 
         <div class="row">
+
             <div class="col-lg-4">
-                <h2>Heckel Cross </h2>
-
-                <p>A variação Heckel Cross refere-se a um tipo específico de criação seletiva de Acarás Disco. Essa variedade é o resultado do cruzamento entre diferentes linhagens de Acarás Disco, incluindo os Discos selvagens Heckel e outras linhagens domesticadas.</p>
-
-                <img class="logo-login" src="<?php echo Html::encode(yii::$app->ConvertToBase64->convertImage('3.jpg', 'images/img-discos')) ?>" alt="DiscusBrazil" title="DiscusBrazil" style="text-align:center; width: 60%; height: 60%; padding: 10px 0;">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="<?php echo Html::encode(yii::$app->ConvertToBase64->convertImage('3.jpg', 'images/img-discos')) ?>" alt="DiscusBrazil" title="DiscusBrazil">
+                    <div class="card-body">
+                        <h5 class="card-title">Heckel Cross</h5>
+                        <p class="card-text">A variação Heckel Cross refere-se a um tipo específico de criação seletiva de Acarás Disco. Essa variedade é o resultado do cruzamento entre diferentes linhagens de Acarás Disco, incluindo os Discos selvagens Heckel e outras linhagens domesticadas.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
             </div>
+
             <div class="col-lg-4">
-                <h2>Orange Nhamunda</h2>
-
-                <p>A variação Orange Nhamunda é uma linhagem específica de Acarás Disco que se originou da região do rio Nhamundá, na bacia amazônica. Esses Discos são conhecidos por sua coloração predominante em tons de laranja, que pode variar em intensidade e tonalidade dependendo da linhagem e das condições de criação.</p>
-
-                <img class="logo-login" src="<?php echo Html::encode(yii::$app->ConvertToBase64->convertImage('1.jpg', 'images/img-discos')) ?>" alt="DiscusBrazil" title="DiscusBrazil" style="text-align:center; width: 60%; height: 60%; padding: 10px 0;">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="<?php echo Html::encode(yii::$app->ConvertToBase64->convertImage('1.jpg', 'images/img-discos')) ?>" alt="DiscusBrazil" title="DiscusBrazil">
+                    <div class="card-body">
+                        <h5 class="card-title">Orange Nhamunda</h5>
+                        <p class="card-text">A variação Orange Nhamunda é uma linhagem específica de Acarás Disco que se originou da região do rio Nhamundá, na bacia amazônica. Esses Discos são conhecidos por sua coloração predominante em tons de laranja, que pode variar em intensidade e tonalidade dependendo da linhagem e das condições de criação.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
             </div>
+
             <div class="col-lg-4">
-                <h2>Green Semi Royal</h2>
-
-                <p>A variação "Green Semi Royal" (ou "Semi Royal Green") é uma linhagem específica de Acarás Disco conhecida por sua coloração verde vibrante. Esses Discos geralmente exibem um verde intenso com nuances e padrões que podem variar de peixe para peixe.</p>
-
-                <img class="logo-login" src="<?php echo Html::encode(yii::$app->ConvertToBase64->convertImage('4.jpg', 'images/img-discos')) ?>" alt="DiscusBrazil" title="DiscusBrazil" style="text-align:center; width: 60%; height: 60%; padding: 10px 0;">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="<?php echo Html::encode(yii::$app->ConvertToBase64->convertImage('4.jpg', 'images/img-discos')) ?>" alt="DiscusBrazil" title="DiscusBrazil">
+                    <div class="card-body">
+                        <h5 class="card-title">Green Semi Royal</h5>
+                        <p class="card-text">A variação "Green Semi Royal" (ou "Semi Royal Green") é uma linhagem específica de Acarás Disco conhecida por sua coloração verde vibrante. Esses Discos geralmente exibem um verde intenso com nuances e padrões que podem variar de peixe para peixe.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
             </div>
-        </div>
 
+        </row>
     </div>
 </div>

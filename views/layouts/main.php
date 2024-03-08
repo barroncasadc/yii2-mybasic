@@ -71,7 +71,7 @@ AppAsset::register($this);
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
         <p class="float-left">&copy; DiscusBrazil <?= date('Y') ?></p>
-        <p class="float-right"><?= Yii::powered() ?></p>
+        <p class="float-right">Desenvolvido por: <code>barroncasadc</code></p>
     </div>
 </footer>
 

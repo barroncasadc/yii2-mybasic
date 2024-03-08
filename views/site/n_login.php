@@ -7,25 +7,27 @@
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 
-$this->title = 'Login';
+$this->title = 'Login - DiscusBrazil';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-   <div class="row" sxtyle="margin-top: 5em;">
-      <div class="col-lg-5 col-lg-offset-4" >
+<style>
+    /* Estilo para a imagem ocupando 100% */
+    .login-image {
+      height: auto;
+      max-width: 100%;
+    }
+  </style>
 
-         <div style="text-align:center">
-            <a href="<?= Yii::$app->urlManager->createUrl(['site/index']) ?>">
-               <img class="logo-login" src="<?php echo Html::encode(yii::$app->ConvertToBase64->convertImage('logo.jpg', 'images/img-site')) ?>" alt="DiscusBrazil" title="DiscusBrazil" style="text-align:center; width: 35%; height: 35%; padding: 10px 0;">
-            </a>
-            <p style="color: #333" >
-               Preencha seus dados para acessar sua conta
-            </p>
-         </div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Coluna para o formulário de login -->
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Login</h3>
 
-         <div class="well" stylXe="background: #fbfef3; padding: 10px; border: 1px solid #bbb; border-radius: 5px;">
-
-            <?php
+          <?php
                 $form = ActiveForm::begin([
                 'id' => 'default-form',
                 // 'options' => ['enctype'=>'multipart/form-data']
@@ -48,13 +50,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
            <?php ActiveForm::end(); ?>
 
-         </div>
-
+        </div>
       </div>
-   </div>
-
-<script>
-    function recaptchaCallback() {
-        $('#submitBtn').removeAttr('disabled');
-    }
-</script>
+    </div>
+    <div class="col-md-6">
+      <!-- Coluna para a imagem -->
+      <img class="login-image" src="<?php echo Html::encode(yii::$app->ConvertToBase64->convertImage('logo.jpg', 'images/img-site')) ?>" alt="DiscusBrazil" title="DiscusBrazil">
+    </div>
+  </div>
+</div>
