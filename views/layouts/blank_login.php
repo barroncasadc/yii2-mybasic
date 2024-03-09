@@ -34,7 +34,7 @@ AppAsset::register($this);
             'class' => 'navbar navbar-expand-md navbar-dark bg-primary fixed-top',
         ],
     ]);
-    echo '<a class="navbar-brand" href="'.Yii::$app->homeUrl.'"><img style="width: 48px;" src="'.Html::encode(yii::$app->ConvertToBase64->convertImage('logo.png', 'images/img-site')).'" alt="Logo">&nbsp;DiscusBrazil</a>'; // Image before brand URL
+    echo '<a class="navbar-brand" href="'.Yii::$app->homeUrl.'"><img style="width: 48px;" src="'.Html::encode(yii::$app->ConvertToBase64->convertImage('logo2.png', 'images/img-site')).'" alt="Logo">&nbsp;DiscusBrazil</a>'; // Image before brand URL
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
