@@ -36,7 +36,7 @@ class Genero extends \yii\db\ActiveRecord
     {
         // @DESC strings para refinamento
         $strings = [
-            'gene_nome'
+            'gene_uuid', 'gene_nome'
         ];
         return [
             [['gene_nome'], 'required'],
@@ -44,6 +44,7 @@ class Genero extends \yii\db\ActiveRecord
             [['gene_data_criacao', 'gene_data_alteracao'], 'safe'],
             [['gene_uuid', 'gene_nome'], 'string', 'max' => 255],
             // my rules --------------------------------
+            [['gene_nome'], 'unique'],
             [['gene_habilitado'], 'integer', 'min' => 0, 'max' => 1],
             [$strings, 'trim'],
             [$strings, 'filter', 'filter'=>'mb_strtolower'],

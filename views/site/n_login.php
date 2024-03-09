@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="col-md-6">
       <!-- Coluna para a imagem -->
-      <img class="login-image" src="<?php echo Html::encode(yii::$app->ConvertToBase64->convertImage('logo.jpg', 'images/img-site')) ?>" alt="DiscusBrazil" title="DiscusBrazil">
+      <img class="login-image" src="<?php echo Html::encode(yii::$app->ConvertToBase64->convertImage('background.jpg', 'images/img-site')) ?>" alt="DiscusBrazil" title="DiscusBrazil">
     </div>
   </div>
 </div>

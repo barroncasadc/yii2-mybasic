@@ -9,6 +9,10 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use app\models\Familia;
+use app\models\Genero;
+use yii\helpers\ArrayHelper;
+
 /**
  * EspecieController implements the CRUD actions for Especie model.
  */
@@ -72,6 +76,8 @@ class EspecieController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'dataFamilia' => $this->getAllFamilia(),
+            'dataGenero' => $this->getAllGenero(),
         ]);
     }
 
@@ -92,6 +98,8 @@ class EspecieController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'dataFamilia' => $this->getAllFamilia(),
+            'dataGenero' => $this->getAllGenero(),
         ]);
     }
 
@@ -123,5 +131,29 @@ class EspecieController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    // @DESC retorna todos os modelos
+    private function getAllFamilia()
+    {
+
+        $getData  = Familia::find()->where(['fami_habilitado' => 1])
+        ->orderBy(['fami_nome'=>SORT_ASC,'fami_nome'=>SORT_ASC])
+        ->all();
+        return ArrayHelper::map($getData, 'fami_codigo', function($data){
+            return ucfirst($data['fami_nome']);
+        });
+    }
+
+    // @DESC retorna todos os modelos
+    private function getAllGenero()
+    {
+
+        $getData  = Genero::find()->where(['gene_habilitado' => 1])
+        ->orderBy(['gene_nome'=>SORT_ASC,'gene_nome'=>SORT_ASC])
+        ->all();
+        return ArrayHelper::map($getData, 'gene_codigo', function($data){
+            return ucfirst($data['gene_nome']);
+        });
     }
 }

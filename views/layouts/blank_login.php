@@ -28,12 +28,13 @@ AppAsset::register($this);
 <header>
     <?php
     NavBar::begin([
-        'brandLabel' => 'DiscusBrazil',
-        'brandUrl' => Yii::$app->homeUrl,
+        // 'brandLabel' => 'DiscusBrazil',
+        // 'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+            'class' => 'navbar navbar-expand-md navbar-dark bg-primary fixed-top',
         ],
     ]);
+    echo '<a class="navbar-brand" href="'.Yii::$app->homeUrl.'"><img style="width: 48px;" src="'.Html::encode(yii::$app->ConvertToBase64->convertImage('logo.png', 'images/img-site')).'" alt="Logo">&nbsp;DiscusBrazil</a>'; // Image before brand URL
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
@@ -60,6 +61,7 @@ AppAsset::register($this);
 
 <main role="main" class="flex-shrink-0">
     <div class="container">
+    <br>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

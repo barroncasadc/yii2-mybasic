@@ -38,7 +38,7 @@ class Familia extends \yii\db\ActiveRecord
     {
         // @DESC strings para refinamento
         $strings = [
-            'fami_nome'
+            'fami_uuid', 'fami_nome'
         ];
         return [
             [['fami_nome'], 'required'],
@@ -46,6 +46,7 @@ class Familia extends \yii\db\ActiveRecord
             [['fami_data_criacao', 'fami_data_alteracao'], 'safe'],
             [['fami_uuid', 'fami_nome'], 'string', 'max' => 255],
             // my rules --------------------------------
+            [['fami_nome'], 'unique'],
             [['fami_habilitado'], 'integer', 'min' => 0, 'max' => 1],
             [$strings, 'trim'],
             [$strings, 'filter', 'filter'=>'mb_strtolower'],

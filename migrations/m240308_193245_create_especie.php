@@ -19,6 +19,7 @@ class m240308_193245_create_especie extends Migration
                 'espe_codigo' => $this->primaryKey(),
                 'espe_uuid' => $this->string(255)->notNull(),
                 'espe_nome' => $this->string(255)->notNull(),
+                'espe_imagem' => $this->string(255),
 
                 // Foreign-key (recebendo) (recebendo)
                 'fami_codigo' => $this->integer()->notNull(),
