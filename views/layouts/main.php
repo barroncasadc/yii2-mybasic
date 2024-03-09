@@ -31,7 +31,7 @@ AppAsset::register($this);
         'brandLabel' => 'DiscusBrazil',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+            'class' => 'navbar navbar-expand-md navbar-dark bg-primary fixed-top',
         ],
     ]);
     echo Nav::widget([
@@ -40,6 +40,7 @@ AppAsset::register($this);
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
+            Yii::$app->user->isGuest ? '<span></span>' : ['label' => 'Usuários', 'url' => ['/pessoa/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
@@ -60,6 +61,7 @@ AppAsset::register($this);
 
 <main role="main" class="flex-shrink-0">
     <div class="container">
+        <br>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

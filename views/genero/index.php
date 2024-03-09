@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\PessoaSearch */
+/* @var $searchModel app\models\GeneroSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Pessoas';
+$this->title = 'Generos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pessoa-index">
+<div class="genero-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Pessoa', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Genero', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,42 +26,31 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            // 'pess_senha',
-            [
-                'label' => 'Tipo',
-                'format' => 'ntext',
-                'value'=>function($model){
-                    return ucwords($model->peti['peti_nome']);
-                },
-            ],
-            // 'pess_codigo',
-            'pess_nome',
-            'pess_email',
-            // 'pess_token',
-            //'pess_imagem',
-            //'pess_habilitado',
+            'gene_codigo',
+            'gene_uuid',
+            'gene_nome',
 
             [
                 'label' => 'Criação',
-                'attribute' => 'pess_data_criacao',
+                'attribute' => 'gene_data_criacao',
                 'format' => ['date', 'php:d/m/Y']
             ],
         
             [
                 'label' => 'Alteração',
-                'attribute' => 'pess_data_alteracao',
+                'attribute' => 'gene_data_alteracao',
                 'format' => ['date', 'php:d/m/Y']
             ],
 
             [
                 'contentOptions' => [],
-                'attribute' => 'pess_habilitado',
+                'attribute' => 'gene_habilitado',
                 'label' => 'Habilitado',
                 'format' => 'raw',
                 'value'=>function($model){
-                    if($model['pess_habilitado'] == 1){
+                    if($model['gene_habilitado'] == 1){
                         return '<span class="btn btn-sm btn-success" role="alert">Sim</span>';
-                    } else if($model['pess_habilitado'] == 0){
+                    } else if($model['gene_habilitado'] == 0){
                         return '<span class="btn btn-sm btn-danger" role="alert">Não</span>';
                     }
                 },

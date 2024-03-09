@@ -21,7 +21,8 @@
         "phpoffice/phpspreadsheet": "^1.23",
         "kartik-v/yii2-widgets": "dev-master",
         "yiisoft/yii2-imagine": "~2.2.0",
-        "kartik-v/yii2-mpdf": "dev-master"
+        "kartik-v/yii2-mpdf": "dev-master",
+        "twbs/bootstrap-icons": "^1.11"
         
     },
     "require-dev": {
