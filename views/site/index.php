@@ -9,9 +9,7 @@ $this->title = 'DiscusBrazil';
 
     <div class="jumbotron text-center bg-transparent">
         <h1 class="display-4">Congratulations!</h1>
-
         <p class="lead">You have successfully entered the best discus site in Brazil!</p>
-
         <p><a class="btn btn-lg btn-success" href="#">Get to know a little more</a></p>
     </div>
 
@@ -52,6 +50,7 @@ $this->title = 'DiscusBrazil';
                 </div>
             </div>
 
-        </row>
+        </div>
+
     </div>
 </div>
