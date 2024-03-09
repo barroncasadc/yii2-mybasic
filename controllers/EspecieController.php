@@ -39,13 +39,17 @@ class EspecieController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new EspecieSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (!$this->checkPermission()) {
+            return $this->render('/exception/forbidden');
+        } else {
+            $searchModel = new EspecieSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
     }
 
     /**
@@ -56,9 +60,13 @@ class EspecieController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if (!$this->checkPermission()) {
+            return $this->render('/exception/forbidden');
+        } else {
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
     }
 
     /**
@@ -68,17 +76,21 @@ class EspecieController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Especie();
+        if (!$this->checkPermission()) {
+            return $this->render('/exception/forbidden');
+        } else {
+            $model = new Especie();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->espe_codigo]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->espe_codigo]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+                'dataFamilia' => $this->getAllFamilia(),
+                'dataGenero' => $this->getAllGenero(),
+            ]);
         }
-
-        return $this->render('create', [
-            'model' => $model,
-            'dataFamilia' => $this->getAllFamilia(),
-            'dataGenero' => $this->getAllGenero(),
-        ]);
     }
 
     /**
@@ -90,17 +102,21 @@ class EspecieController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if (!$this->checkPermission()) {
+            return $this->render('/exception/forbidden');
+        } else {
+            $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->espe_codigo]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->espe_codigo]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+                'dataFamilia' => $this->getAllFamilia(),
+                'dataGenero' => $this->getAllGenero(),
+            ]);
         }
-
-        return $this->render('update', [
-            'model' => $model,
-            'dataFamilia' => $this->getAllFamilia(),
-            'dataGenero' => $this->getAllGenero(),
-        ]);
     }
 
     /**
@@ -112,9 +128,13 @@ class EspecieController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if (!$this->checkPermission()) {
+            return $this->render('/exception/forbidden');
+        } else {
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }
     }
 
     /**
@@ -136,7 +156,6 @@ class EspecieController extends Controller
     // @DESC retorna todos os modelos
     private function getAllFamilia()
     {
-
         $getData  = Familia::find()->where(['fami_habilitado' => 1])
         ->orderBy(['fami_nome'=>SORT_ASC,'fami_nome'=>SORT_ASC])
         ->all();
@@ -148,12 +167,21 @@ class EspecieController extends Controller
     // @DESC retorna todos os modelos
     private function getAllGenero()
     {
-
         $getData  = Genero::find()->where(['gene_habilitado' => 1])
         ->orderBy(['gene_nome'=>SORT_ASC,'gene_nome'=>SORT_ASC])
         ->all();
         return ArrayHelper::map($getData, 'gene_codigo', function($data){
             return ucfirst($data['gene_nome']);
         });
+    }
+
+    // @DESC prevent unauthorized access
+    // @DEC just logged and admin can access
+    private function checkPermission() {
+        // perfis permitidos
+        if (\Yii::$app->user->identity->peti_codigo == 1) {
+            return true;
+        }
+        return false;
     }
 }

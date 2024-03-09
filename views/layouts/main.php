@@ -42,6 +42,9 @@ AppAsset::register($this);
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? '<span></span>' : ['label' => 'Usuários', 'url' => ['/pessoa/index']],
+            Yii::$app->user->isGuest ? '<span></span>' : ['label' => 'Família', 'url' => ['/familia/index']],
+            Yii::$app->user->isGuest ? '<span></span>' : ['label' => 'Gênero', 'url' => ['/genero/index']],
+            Yii::$app->user->isGuest ? '<span></span>' : ['label' => 'Espécie', 'url' => ['/especie/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
