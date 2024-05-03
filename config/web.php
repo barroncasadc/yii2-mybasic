@@ -101,6 +101,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 // ['class' => 'app\components\RandomIdUrlRule'],
+                // ['class' => 'yii\rest\UrlRule', 'controller' => 'api'],
             ],
         ],
         

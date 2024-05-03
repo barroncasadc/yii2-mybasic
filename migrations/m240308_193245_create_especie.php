@@ -75,7 +75,17 @@ class m240308_193245_create_especie extends Migration
 
     // Seed insert - method 1
     private function seed() {
-        // $sql2 = " YOUR SQL HERE ";
-        // Yii::$app->db->createCommand($sql2)->execute();
+        // https://www.slideshare.net/jlna/atlas-dos-discus
+        $sql2 = "
+            INSERT INTO `especie` (`espe_codigo`, `espe_uuid`,  `espe_nome`, `espe_imagem`, `fami_codigo`, `gene_codigo`, `espe_habilitado`, `espe_data_criacao`, `espe_data_alteracao`) VALUES
+            (1, 'efd1f713-de39-4841-b49a-fc672c34c34e', 'orange nhamunda', null, 1, 1, 1, '2022-04-23 01:19:53', '2022-04-23 01:19:53'),
+            (2, 'efd1f713-de39-4842-b49a-fc672c34c34e', 'albino gold', null, 1, 1, 1, '2022-04-23 01:19:53', '2022-04-23 01:19:53'),
+            (3, 'efd1f713-de39-4843-b49a-fc672c34c34e', 'alenquer', null, 1, 1, 1, '2022-04-23 01:19:53', '2022-04-23 01:19:53'),
+            (4, 'efd1f713-de39-4844-b49a-fc672c34c34e', 'angel drean', null, 1, 1, 1, '2022-04-23 01:19:53', '2022-04-23 01:19:53'),
+            (5, 'efd1f713-de39-4845-b49a-fc672c34c34e', 'angel diamond', null, 1, 1, 1, '2022-04-23 01:19:53', '2022-04-23 01:19:53'),
+            (6, 'efd1f713-de39-4846-b49a-fc672c34c34e', 'blue heckel cross', null, 1, 1, 1, '2022-04-23 01:19:53', '2022-04-23 01:19:53'),
+            (7, 'efd1f713-de39-4847-b49a-fc672c34c34e', 'checkerboard pigeon', null, 1, 1, 1, '2022-04-23 01:19:53', '2022-04-23 01:19:53');
+        ";
+        Yii::$app->db->createCommand($sql2)->execute();
     }
 }
