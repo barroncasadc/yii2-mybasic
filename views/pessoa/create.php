@@ -1,21 +1,32 @@
+<?php use yii\helpers\Html; ?>
+
 <?php
-
-use yii\helpers\Html;
-
-/* @var $this yii\web\View */
-/* @var $model app\models\Pessoa */
-
-$this->title = 'Cadastra Usuário';
-$this->params['breadcrumbs'][] = ['label' => 'Pessoas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+  // CREATE HEADERS
+  $defaultLabel = Html::encode(strtoupper('pessoa'));
+  $actualLabel  = Html::encode(strtoupper('cadastrar'));
+  $actionLabel  = Html::encode(strtoupper('cadastrar'));
+  $titleLabel   = Html::encode(strtoupper('cadastrar: ' . $defaultLabel));
 ?>
-<div class="pessoa-create">
 
-    <h4><?= Html::encode($this->title) ?></h4>
-    <hr>
+<?php
+  $this->title = $titleLabel;
+  $this->params['breadcrumbs'][] = ['label' => $defaultLabel, 'url' => ['index']];
+  $this->params['breadcrumbs'][] = $actionLabel;
+?>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+<div class="<?php echo $defaultLabel ?>-create box">
+
+    <?php
+        echo \app\widgets\formModel\FormModelWidget::widget([
+        'type' => 1, // create
+        'text' => strtoupper($actualLabel),
+        ])
+    ?>
+
+    <div class="box-body">
+        <?= $this->render('_form', [
+            'model' => $model
+        ]) ?>
+    </div>
 
 </div>

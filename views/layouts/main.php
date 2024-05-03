@@ -45,6 +45,7 @@ AppAsset::register($this);
             Yii::$app->user->isGuest ? '<span></span>' : ['label' => 'Família', 'url' => ['/familia/index']],
             Yii::$app->user->isGuest ? '<span></span>' : ['label' => 'Gênero', 'url' => ['/genero/index']],
             Yii::$app->user->isGuest ? '<span></span>' : ['label' => 'Espécie', 'url' => ['/especie/index']],
+            Yii::$app->user->isGuest ? '<span></span>' : ['label' => 'API', 'url' => ['/api']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
@@ -66,9 +67,14 @@ AppAsset::register($this);
 <main role="main" class="flex-shrink-0">
     <div class="container">
         <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+        <br>
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>

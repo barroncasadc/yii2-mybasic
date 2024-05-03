@@ -1,22 +1,34 @@
+<?php use yii\helpers\Html; ?>
+
 <?php
-
-use yii\helpers\Html;
-
-/* @var $this yii\web\View */
-/* @var $model app\models\Pessoa */
-
-$this->title = 'Atualizar Pessoa: ' . $model->pess_codigo;
-$this->params['breadcrumbs'][] = ['label' => 'Pessoas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->pess_codigo, 'url' => ['view', 'id' => $model->pess_codigo]];
-$this->params['breadcrumbs'][] = 'Update';
+  // UPDATE HEADERS
+  $defaultLabel = Html::encode(strtoupper('pessoa'));
+  $actionLabel  = Html::encode(strtoupper('atualizar'));
+  $actualLabel  = Html::encode(strtoupper(substr($model->pess_nome, 0, 50)));
+  $titleLabel   = Html::encode(strtoupper('atualizar: ' . $defaultLabel));
+  $codigo       = Html::encode(strtoupper($model->pess_codigo));
 ?>
-<div class="pessoa-update">
 
-    <h4><?= Html::encode($this->title) ?></h4>
-    <hr>
+<?php
+  $this->title = $titleLabel;
+  $this->params['breadcrumbs'][] = ['label' => $defaultLabel, 'url' => ['index']];
+  $this->params['breadcrumbs'][] = ['label' => $actualLabel, 'url' => ['view', 'id' => $codigo]];
+  $this->params['breadcrumbs'][] = $actionLabel;
+?>
 
+<div class="<?php echo $defaultLabel ?>-update box">
+
+  <?php
+    echo \app\widgets\formModel\FormModelWidget::widget([
+      'type' => 2, // update
+      'text' => $actualLabel,
+    ])
+  ?>
+
+  <div class="box-body">
     <?= $this->render('_form', [
-        'model' => $model,
+      'model' => $model
     ]) ?>
+  </div>
 
 </div>
