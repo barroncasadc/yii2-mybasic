@@ -1,16 +1,92 @@
-# excluindo todos os arquivos docker
+--------------------------------------
+# Limpando tudo do Docker.
 
 sudo rm -R -f vendor &&
-sudo rm -vf $(docker ps -a -a) &&
-sudo rmi -f $(docker images -a -q) &&
-docker volume rm $(docker volumes ls -q) &&
+docker rm -vf $(docker ps -a -q) &&
+docker rmi -f $(docker images -a -q) &&
+docker volume rm $(docker volume ls -q) &&
+docker system prune --force &&
+docker-compose up --build --force-recreate -d &&
+sudo chmod +x starter.sh &&
+./starter.sh
+
+sudo chown -R $USER:$USER .
+
+kJ8bCmV2qz7kyU0W
+
+--------------------------------------
+# Limpando vendor, php e rebuild
+
+sudo rm -R -f vendor &&
+docker rm -vf $(docker ps -a -q) &&
+docker rmi -f php.dockerfile &&
 docker-compose up --build --force-recreate -d
 
-# yii2 interation
+docker exec -it 204c6ed1ce35 php yii migrate --interactive=0
 
-docker exec -it 12313asd php yii2 migrate/create create_usuario --interactive=0
-docker exec -it 12313asd php yii2 migrate/create update_usuario --interactive=0
-docker exec -it 12313asd bash ; chmod -R 777 migrations/* ; exit
-docker exec -it 12313asd php yii migrate --interactive=0
-docker exec -it 12313asd composer require yiisoft/yii2-client-plugin
+--------------------------------------
+# Limpando individualmente
 
+docker volume rm _nome_data_
+docker rmi -f _name_image_
+docker rm -f 787ssh13s
+
+--------------------------------------
+# Recriar docker-compose do zero
+
+docker-compose up --build --force-recreate -d
+
+--------------------------------------
+# Buildando um container para teste dockerfile
+
+docker build -t caio:latest -f php-secdash-base.dockerfile .
+docker run -it --rm --name caio_teste caio:latest bash
+
+docker build -t caio:v1 -f php.dockerfile  .
+docker run -it --name caio_teste --rm caio:v1 bash
+
+docker exec -it container_name bash
+
+--------------------------------------
+# Atalho commit
+
+git add . && git commit -am 'Adjusts...' && git pull --all && git push origin develop
+
+--------------------------------------
+# Comandos Migration
+
+docker exec -it 189f8eb79300 php yii migrate/create create_insight_product --interactive=0
+docker exec -it 189f8eb79300 php yii migrate/create update_produto --interactive=0
+
+docker exec -it 189f8eb79300 bash ; chmod -R 777 migrations/* ; exit
+
+docker exec -it fc3215b3b0d5 php yii migrate --interactive=0
+
+
+--------------------------------------
+# Instalando Componentes
+
+docker exec -it 189f8eb79300 composer require yiisoft/yii2-httpclient
+
+--------------------------------------
+# Comandos Github PR
+
+atlantis plan -p prod
+atlantis apply
+
+--------------------------------------
+# Comando PRE
+
+echo "<pre>";
+    print_r($campos);
+echo "</pre>";
+die();
+
+--------------------------------------
+git log --oneline -n 10
+git reset --hard 56e9db7
+
+
+--------------------------------------
+--------------------------------------
+docker exec -it 189f8eb79300 php yii migrate/create update_produto_atividade --interactive=0

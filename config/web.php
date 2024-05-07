@@ -24,7 +24,8 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => getenv('COOKIE_VALIDATION_KEY'),
-            'baseUrl' => $baseUrl,
+            // 'baseUrl' => $baseUrl,
+            'baseUrl' => 'http://discusbrazil.fun:8888',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
