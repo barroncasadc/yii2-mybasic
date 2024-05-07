@@ -61,7 +61,7 @@ class m240308_193159_create_genero extends Migration
 
     // Seed insert - method 1
     private function seed() {
-        // $sql2 = " YOUR SQL HERE ";
+        // $sql2 = " YOUR SQL HERE "; 
         // Yii::$app->db->createCommand($sql2)->execute();
     }
 }
