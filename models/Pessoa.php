@@ -29,7 +29,7 @@ class Pessoa extends \yii\db\ActiveRecord
 
      public $data_criacao    = 'pess_data_criacao';
      public $data_alteracao  = 'pess_data_alteracao';
-     public $confirm_password;
+     public $confirm_password = "";
  
     public static function tableName()
     {
@@ -43,13 +43,13 @@ class Pessoa extends \yii\db\ActiveRecord
     {
         // @DESC strings para refinamento
         $strings = [
-            'pess_nome', 'pess_email', 'pess_senha', 'pess_imagem', 'pess_token'
+            'pess_nome', 'pess_email', 'pess_imagem', 'pess_token'
         ];
         return [
             [['pess_nome', 'pess_email'], 'required'],
             [['pess_data_criacao', 'pess_data_alteracao'], 'safe'],
             [['pess_habilitado', 'peti_codigo'], 'integer'],
-            [['pess_nome', 'pess_email'], 'string', 'max' => 255],
+            [['pess_nome', 'pess_email', 'pess_uuid'], 'string', 'max' => 255],
             [['pess_senha', 'pess_imagem', 'pess_token'], 'string', 'max' => 80],
             [['peti_codigo'], 'exist', 'skipOnError' => true, 'targetClass' => PessoaTipo::className(), 'targetAttribute' => ['peti_codigo' => 'peti_codigo']],
             // my rules --------------------------------
@@ -62,8 +62,8 @@ class Pessoa extends \yii\db\ActiveRecord
             [['pess_email'], 'email'],
             [["pess_senha", "confirm_password"],'required'],
             [['pess_senha', 'confirm_password'], 'string', 'min' => 6 ,'max' => 80],
-            [['confirm_password'], 'compare', 'compareAttribute' => 'pess_senha'],
-            [['pess_senha', "confirm_password"],'safe'],
+            [['pess_senha'], 'compare', 'compareAttribute' => 'confirm_password'],
+            // [['pess_senha', "confirm_password"],'safe'],
             // [['current_password'], 'validarData'],
         ];
     }
@@ -78,6 +78,7 @@ class Pessoa extends \yii\db\ActiveRecord
             'pess_nome' => 'Nome',
             'pess_email' => 'Email',
             'pess_senha' => 'Senha',
+            'pess_uuid' => 'Uuid',
             'pess_token' => 'Token',
             'peti_codigo' => 'Peti Codigo',
             'pess_imagem' => 'Imagem',
@@ -133,6 +134,14 @@ class Pessoa extends \yii\db\ActiveRecord
             // @DESC alterando token do usuario
             $this->pess_token = Yii::$app->security->generateRandomString();
                         
+            // @DESC alterando uuid do usuario
+            // # GENERATE UUID
+            if($this->pess_uuid == null) {
+                $this->pess_uuid = \Yii::$app->Utils->gen_uuid();
+            } else {
+                $this->pess_uuid = $this->getOldAttribute('pess_uuid');
+            }
+
             // @DESC removendo tags e realizando sanitizacao de parametros
             yii::$app->Utils->scapeTags($this, $this->data_criacao, $this->data_alteracao);
 
