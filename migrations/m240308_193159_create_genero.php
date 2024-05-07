@@ -61,7 +61,11 @@ class m240308_193159_create_genero extends Migration
 
     // Seed insert - method 1
     private function seed() {
-        // $sql2 = " YOUR SQL HERE "; 
-        // Yii::$app->db->createCommand($sql2)->execute();
+        // https://www.slideshare.net/jlna/atlas-dos-discus
+        $sql2 = "
+            INSERT INTO `genero` (`gene_codigo`, `gene_uuid`,  `gene_nome`, `gene_habilitado`, `gene_data_criacao`, `gene_data_alteracao`) VALUES
+            (1, 'efd1f700-de39-4841-b49a-fc672c34c34e', 'symphysodon', 1, '2022-04-23 01:19:53', '2022-04-23 01:19:53');
+        ";
+        Yii::$app->db->createCommand($sql2)->execute();
     }
 }

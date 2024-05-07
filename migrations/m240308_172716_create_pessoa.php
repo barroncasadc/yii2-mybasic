@@ -17,6 +17,7 @@ class m240308_172716_create_pessoa extends Migration
             // Create
             $this->createTable($tableName, [
                 'pess_codigo' => $this->primaryKey(),
+                'pess_uuid' => $this->string(255)->notNull(),
                 'pess_nome' => $this->string(255)->notNull(),
                 'pess_email' => $this->string(255)->notNull(),
                 'pess_senha' => $this->string(80)->notNull(),
@@ -72,7 +73,11 @@ class m240308_172716_create_pessoa extends Migration
 
     // Seed insert - method 1
     private function seed() {
-        // $sql2 = " YOUR SQL HERE ";
-        // Yii::$app->db->createCommand($sql2)->execute();
+        // https://www.slideshare.net/jlna/atlas-dos-discus
+        $sql2 = "
+            INSERT INTO `pessoa` (`pess_codigo`, `pess_uuid`, `pess_nome`, `pess_email`, `pess_senha`, `pess_token`, `peti_codigo`, `pess_imagem`, `pess_habilitado`, `pess_data_criacao`, `pess_data_alteracao`) VALUES
+            ('1', 'efd1f788-de39-4841-b49a-fc670c34c35e', 'caio cesar', 'barroncasadc@gmail.com', '$2y$13$auNQhK4fYj5cTk5t0Y9wiecDe5UkcPl9i4eYzV9FsyymWYkuBqWqu', 'gId11M-e4Iz0dqEDj6pijstBiJ0-vQap', 1, 'default.png', 1, '2024-04-02 11:53:04', '2024-04-02 11:53:04');
+        ";
+        Yii::$app->db->createCommand($sql2)->execute();
     }
 }

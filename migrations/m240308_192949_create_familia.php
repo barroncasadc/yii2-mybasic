@@ -61,7 +61,11 @@ class m240308_192949_create_familia extends Migration
 
     // Seed insert - method 1
     private function seed() {
-        // $sql2 = " YOUR SQL HERE ";
-        // Yii::$app->db->createCommand($sql2)->execute();
+        // https://www.slideshare.net/jlna/atlas-dos-discus
+        $sql2 = "
+            INSERT INTO `familia` (`fami_codigo`, `fami_uuid`,  `fami_nome`, `fami_habilitado`, `fami_data_criacao`, `fami_data_alteracao`) VALUES
+            (1, 'efd1f713-de39-4841-b77a-fc672c34c34e', 'cichlidae', 1, '2022-04-23 01:19:53', '2022-04-23 01:19:53');
+        ";
+        Yii::$app->db->createCommand($sql2)->execute();
     }
 }
