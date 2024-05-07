@@ -43,7 +43,7 @@ services:
     environment:
       EXAMPLE: "value_example"
     ports:
-      - "8888:80"
+      - "80:80"
     depends_on:
       - db
       - phpmyadmin
