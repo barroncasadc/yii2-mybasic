@@ -12,7 +12,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: "P@5$w0rd@"
+      MYSQL_ROOT_PASSWORD: "kJ8bCmV2qz7kyU0W"
       MYSQL_DATABASE: "mybasicyii2"
     networks:
       - minha-rede
@@ -22,7 +22,7 @@ services:
     container_name: phpmyadmin-container
     image: phpmyadmin/phpmyadmin
     environment:
-      MYSQL_ROOT_PASSWORD: "P@5$w0rd@"
+      MYSQL_ROOT_PASSWORD: "kJ8bCmV2qz7kyU0W"
       MYSQL DATABASE: "mybasicyii2"
     ports:
     - "9999:80"
